@@ -9,7 +9,7 @@ PORT = config('PORT', default='8443', cast=int)
 
 # PugBot url settings
 RAW_GIT_DOC_URL = config('RAW_GIT_DOC_URL')
-REGRAS_URL = config('RAW_GIT_DOC_URL')
+REGRAS_URL = config('REGRAS_URL')
 
 
 # Logging settings
