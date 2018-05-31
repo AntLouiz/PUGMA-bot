@@ -3,7 +3,8 @@ from telegram.ext import Updater
 from settings import (
     API_KEY,
     APP_NAME,
-    PORT
+    PORT,
+    DEBUG
 )
 from handlers import (
     START,
@@ -25,14 +26,15 @@ def main():
     dispatcher.add_handler(MEETUP)
     dispatcher.add_handler(RULES)
 
-    updater.start_webhook(
-        listen='0.0.0.0',
-        port=PORT,
-        url_path=API_KEY
-    )
-
-    updater.bot.set_webhook(f'https://{APP_NAME}.herokuapp.com/{API_KEY}')
-    #updater.start_polling()
+    if not DEBUG:
+        updater.start_webhook(
+            listen='0.0.0.0',
+            port=PORT,
+            url_path=API_KEY
+        )
+        updater.bot.set_webhook(f'https://{APP_NAME}.herokuapp.com/{API_KEY}')
+    else:
+        updater.start_polling()
     updater.idle()
 
 
